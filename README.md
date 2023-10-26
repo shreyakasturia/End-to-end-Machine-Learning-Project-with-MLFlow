@@ -1,163 +1,31 @@
-# End-to-end-Machine-Learning-Project-with-MLFlow
+# Wine Quality Prediction with MLflow
 
-## Workflows
+This project is an end-to-end example of a wine quality prediction system, which combines machine learning, web development, containerization with Docker, and cloud deployment on AWS. The primary technologies used include `Python`, `MLflow`, `YAML`, `HTML`, `CSS`, `JavaScript`, `Docker`, and `AWS`.
 
-1. Update config.yaml
-2. Update schema.yaml
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
-9. Update the app.py
+## Project Overview
 
-# How to run?
-### STEPS:
+The goal of this project is to predict the quality of wine based on various features. We utilize a machine learning model to make predictions, and `MLflow` helps us manage and track the experimentation process to find the best model parameters.
 
-Clone the repository
+The project consists of several components:
 
-```bash
-https://github.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow
-```
-### STEP 01- Create a conda environment after opening the repository
+1. **Machine Learning Model (`Python`)**: `Python` is used to develop a machine learning model for wine quality prediction. We experiment with different hyperparameters like `alpha` and `l1_ratio` to optimize the model's performance.
 
-```bash
-conda create -n mlproj python=3.8 -y
-```
+3. **`MLflow` (`Python`)**: `MLflow` is used for tracking and managing the machine learning experiments. It helps us log and compare different runs, record model parameters and metrics, and store artifacts (e.g., model files).
 
-```bash
-conda activate mlproj
-```
+4. **Web Interface (`HTML`, `CSS`, `JavaScript`)**: We create a user-friendly web interface that allows users to input wine feature values and obtain predictions. The website is designed using `HTML`, styled with `CSS`, and enhanced with `JavaScript` for interactivity.
 
+5. **Docker (`Dockerfile`)**: We containerize the entire project using `Docker`. The `Dockerfile` specifies the environment and dependencies required for the project, ensuring consistent and reproducible deployments.
 
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
-```
+6. **`AWS` (Amazon Web Services)**: `AWS` is used for cloud deployment. Specifically, we leverage the following services:
+   
+   - **Amazon Elastic Container Registry (`ECR`)**: We push the Docker image to `ECR`, a fully-managed Docker container registry, for easy and secure storage and distribution.
+   
+   - **Amazon EC2 (Elastic Compute Cloud)**: We use `EC2` instances to host the Docker container, making the website publicly accessible. The container is pulled from `ECR` and launched on the `EC2` instance.
 
+7. **GitHub Repository**: Hosted this github repository on AWS for accessbility to the public.
 
-```bash
-# Finally run the following command
-python app.py
-```
 
-Now,
-```bash
-open up you local host and port
-```
 
+## License
 
-
-## MLflow
-
-[Documentation](https://mlflow.org/docs/latest/index.html)
-
-
-##### cmd
-- mlflow ui
-
-### dagshub
-[dagshub](https://dagshub.com/)
-
-MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow.mlflow \
-MLFLOW_TRACKING_USERNAME=entbappy \
-MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0 \
-python script.py
-
-Run this to export as env variables:
-
-```bash
-
-export MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow.mlflow
-
-export MLFLOW_TRACKING_USERNAME=entbappy 
-
-export MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0
-
-```
-
-
-
-# AWS-CICD-Deployment-with-Github-Actions
-
-## 1. Login to AWS console.
-
-## 2. Create IAM user for deployment
-
-	#with specific access
-
-	1. EC2 access : It is virtual machine
-
-	2. ECR: Elastic Container registry to save your docker image in aws
-
-
-	#Description: About the deployment
-
-	1. Build docker image of the source code
-
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 644454685258.dkr.ecr.us-east-2.amazonaws.com/mlproject
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  644454685258.dkr.ecr.us-east-2.amazonaws.com
-
-    ECR_REPOSITORY_NAME = mlproject
-
-
-
-
-## About MLflow 
-MLflow
-
- - Its Production Grade
- - Trace all of your expriements
- - Logging & tagging your model
+This project is licensed under the MIT License.
